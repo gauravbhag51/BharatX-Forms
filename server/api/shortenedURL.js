@@ -23,7 +23,7 @@ module.exports = (app) => {
 		const data = await service.getOriginalURL(id);
 		if (data.error) {
 			console.error(data.error);
-			return res.redirect("http://localhost:3000/404");
+			return res.redirect("https://bharatx-forms.netlify.app/404");
 		}
 		res.redirect(data.data.originalURL);
 	});

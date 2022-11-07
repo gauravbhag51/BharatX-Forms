@@ -55,12 +55,12 @@ export default function ShareLinkModal({ setShowModal, showModal }) {
 				<div className="flex flex-col gap-2">
 					<h3 className="text-lg font-semibold">Original URL</h3>
 					<p className="text-[16px] border-b-2 flex flex-row justify-between items-center py-2">
-						{`http://localhost:3000/${id}/view`}
+						{`https://bharatx-forms.netlify.app/${id}/view`}
 						<MdContentCopy
 							size={"1.5em"}
 							className="cursor-pointer"
 							onClick={() => {
-								copyToClipboard(`http://localhost:3000/${id}/view`);
+								copyToClipboard(`https://bharatx-forms.netlify.app/${id}/view`);
 							}}
 						/>
 					</p>
@@ -68,12 +68,12 @@ export default function ShareLinkModal({ setShowModal, showModal }) {
 				<div className="flex flex-col gap-2">
 					<h3 className="text-lg font-semibold">Shorten URL</h3>
 					<p className="text-[16px] border-b-2 flex flex-row justify-between items-center py-2">
-						{`localhost:5000/url/${shortenURL}`}
+						{`https://bharatx-forms-backend.onrender.com/url/${shortenURL}`}
 						<MdContentCopy
 							size={"1.5em"}
 							className="cursor-pointer"
 							onClick={() => {
-								copyToClipboard(`localhost:5000/url/${shortenURL}`);
+								copyToClipboard(`https://bharatx-forms-backend.onrender.com/url/${shortenURL}`);
 							}}
 						/>
 					</p>

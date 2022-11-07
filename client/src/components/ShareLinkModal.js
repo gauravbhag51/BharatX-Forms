@@ -12,7 +12,7 @@ export default function ShareLinkModal({ setShowModal, showModal }) {
 	useEffect(() => {
 		api
 			.post("/url/create", {
-				originalURL: `https://bharatx-forms.netlify.app/${id}/view`,
+				originalURL: `https://bharatx-forms.vercel.app/${id}/view`,
 			})
 			.then((res) => {
 				setShortenURL(res.data.shortenedURL);
@@ -55,12 +55,12 @@ export default function ShareLinkModal({ setShowModal, showModal }) {
 				<div className="flex flex-col gap-2">
 					<h3 className="text-lg font-semibold">Original URL</h3>
 					<p className="text-[16px] border-b-2 flex flex-row justify-between items-center py-2">
-						{`https://bharatx-forms.netlify.app/${id}/view`}
+						{`https://bharatx-forms.vercel.app/${id}/view`}
 						<MdContentCopy
 							size={"1.5em"}
 							className="cursor-pointer"
 							onClick={() => {
-								copyToClipboard(`https://bharatx-forms.netlify.app/${id}/view`);
+								copyToClipboard(`https://bharatx-forms.vercel.app/${id}/view`);
 							}}
 						/>
 					</p>

@@ -12,7 +12,7 @@ export default function ShareLinkModal({ setShowModal, showModal }) {
 	useEffect(() => {
 		api
 			.post("/url/create", {
-				originalURL: `http://localhost:3000/${id}/view`,
+				originalURL: `https://bharatx-forms.netlify.app/${id}/view`,
 			})
 			.then((res) => {
 				setShortenURL(res.data.shortenedURL);

@@ -11,7 +11,7 @@ export default function QuestionContainerView({ question }) {
 			{
 				(question["question-type"] === "paragraph" || question["question-type"] === "short-input")
 				&&
-				<h1>Word Count:&nbsp;
+				<h1>Character Count:&nbsp;
 					{formResponse["answers"].filter(answer => answer.questionId === question._id)[0] ? formResponse["answers"].filter(answer => answer.questionId === question._id)[0]["answer"].length : 0}
 				</h1>
 			}

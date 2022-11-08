@@ -13,6 +13,7 @@ export default function FormView() {
 		useContext(AppContext);
 	const { id } = useParams();
 	const navigate = useNavigate();
+	const { currentUser, authLoading } = useContext(CurrentUserContext);
 	const [sameUser, setSameUser] = useState(false);
 	useEffect(() => {
 		setformResponse({ ...formResponse, answers: [] });
@@ -53,7 +54,7 @@ export default function FormView() {
 				navigate(`/404`);
 			});
 	};
-	const { currentUser, authLoading } = useContext(CurrentUserContext);
+	
 	if (isLoading || authLoading) return <>Loading...</>;
 	// if (form && currentUser._id === form.owner) {
 		

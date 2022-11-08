@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect,useState } from "react";
 import { CurrentUserContext } from "../CurrentUserContext";
 import { useNavigate, useParams } from "react-router";
 import api from "../api";
@@ -7,24 +7,13 @@ import { AppContext } from "../AppContext";
 import { colorPallete } from "../constants";
 import QuestionContainerView from "../formViewComponents/QuestionContainerView";
 import CreatorSubmitError from "../components/CreatorSubmitError"
-let hidden = null;
-let visibilityChange = null;
-if (typeof document.hidden !== 'undefined') { // Opera 12.10 and Firefox 18 and later support 
-  hidden = 'hidden';
-  visibilityChange = 'visibilitychange';
-} else if (typeof document.msHidden !== 'undefined') {
-  hidden = 'msHidden';
-  visibilityChange = 'msvisibilitychange';
-} else if (typeof document.webkitHidden !== 'undefined') {
-  hidden = 'webkitHidden';
-  visibilityChange = 'webkitvisibilitychange';
-}
+
 export default function FormView() {
 	const { setformResponseId, formResponse, setformResponse } =
 		useContext(AppContext);
 	const { id } = useParams();
 	const navigate = useNavigate();
-
+	const [sameUser, setSameUser] = useState(false);
 	useEffect(() => {
 		setformResponse({ ...formResponse, answers: [] });
 	}, []);
@@ -51,6 +40,7 @@ export default function FormView() {
 
 	// handle submitting form response
 	const handleFormSubmittion = (e) => {
+
 		e.preventDefault();
 		api
 			.post(`/form/${form._id}/response`, { formResponseData: formResponse })
@@ -64,7 +54,7 @@ export default function FormView() {
 	const { currentUser, authLoading } = useContext(CurrentUserContext);
 	if (isLoading || authLoading) return <>Loading...</>;
 	if (form && currentUser._id === form.owner) {
-		return <CreatorSubmitError/>
+		setSameUser(true);
 	}
 	return (
 		<div
@@ -111,6 +101,7 @@ export default function FormView() {
 							style={{
 								backgroundColor: `${colorPallete[form["form-color"]].main}`,
 							}}
+							disabled={sameUser}
 						>
 							Submit
 						</button>

@@ -29,6 +29,8 @@ export default function FormView() {
 		{
 			onSuccess: (data) => {
 				setformResponseId(data._id);
+				if(currentUser._id===data.owner)
+				setSameUser(true);
 			},
 			onError: (error) => {
 				navigate("/404");
@@ -53,9 +55,9 @@ export default function FormView() {
 	};
 	const { currentUser, authLoading } = useContext(CurrentUserContext);
 	if (isLoading || authLoading) return <>Loading...</>;
-	if (form && currentUser._id === form.owner) {
-		setSameUser(true);
-	}
+	// if (form && currentUser._id === form.owner) {
+		
+	// }
 	return (
 		<div
 			className="flex w-full min-h-screen justify-center py-4 pb-20"

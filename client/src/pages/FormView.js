@@ -6,7 +6,7 @@ import api from "../api";
 import { AppContext } from "../AppContext";
 import { colorPallete } from "../constants";
 import QuestionContainerView from "../formViewComponents/QuestionContainerView";
-import CreatorSubmitError from "../components/CreatorSubmitError"
+import toast from "react-hot-toast";
 
 export default function FormView() {
 	const { setformResponseId, formResponse, setformResponse } =
@@ -45,6 +45,11 @@ export default function FormView() {
 	const handleFormSubmittion = (e) => {
 
 		e.preventDefault();
+		if (sameUser) {
+			toast.error("You Cannot Submit a form that you created", {
+				position: "bottom-center",
+			});
+		}
 		api
 			.post(`/form/${form._id}/response`, { formResponseData: formResponse })
 			.then((res) => {
@@ -56,9 +61,6 @@ export default function FormView() {
 	};
 	
 	if (isLoading || authLoading) return <>Loading...</>;
-	// if (form && currentUser._id === form.owner) {
-		
-	// }
 	return (
 		<div
 			className="flex w-full min-h-screen justify-center py-4 pb-20"

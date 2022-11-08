@@ -108,7 +108,6 @@ export default function FormView() {
 							style={{
 								backgroundColor: `${colorPallete[form["form-color"]].main}`,
 							}}
-							disabled={sameUser}
 						>
 							Submit
 						</button>

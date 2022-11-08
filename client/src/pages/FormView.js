@@ -50,14 +50,16 @@ export default function FormView() {
 				position: "bottom-center",
 			});
 		}
-		api
-			.post(`/form/${form._id}/response`, { formResponseData: formResponse })
-			.then((res) => {
-				navigate(`/${id}/formResponse`);
-			})
-			.catch((error) => {
-				navigate(`/404`);
-			});
+		else {
+			api
+				.post(`/form/${form._id}/response`, { formResponseData: formResponse })
+				.then((res) => {
+					navigate(`/${id}/formResponse`);
+				})
+				.catch((error) => {
+					navigate(`/404`);
+				});
+		}
 	};
 	
 	if (isLoading || authLoading) return <>Loading...</>;
